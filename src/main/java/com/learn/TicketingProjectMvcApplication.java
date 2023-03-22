@@ -12,5 +12,6 @@ public class TicketingProjectMvcApplication {
     }
     @Test
     void contextLoads() {
+
     }
 }
