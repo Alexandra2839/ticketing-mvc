@@ -14,4 +14,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("login");
     }
 
+    //STATIC PAGES ONLY - NO DATA
+
 }
