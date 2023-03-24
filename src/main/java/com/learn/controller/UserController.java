@@ -64,8 +64,6 @@ public class UserController {
     public String deleteUser(Model model, @PathVariable ("username") String username){
 
         userService.deleteById(username);
-//        model.addAttribute("roles",roleService.findAll() );
-//        model.addAttribute("users",userService.findAll() );
 
 
 
