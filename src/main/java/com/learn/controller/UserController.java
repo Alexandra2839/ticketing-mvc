@@ -29,21 +29,15 @@ public class UserController {
         model.addAttribute("roles",roleService.findAll() );
         model.addAttribute("users",userService.findAll() );
 
-        return "user/create";
+        return "/user/create";
     }
 
     @PostMapping("/create")
-    public String insertUser(Model model, @ModelAttribute("user") UserDTO user){
-
-        model.addAttribute("user", new UserDTO());
-        model.addAttribute("roles",roleService.findAll() );
+    public String insertUser(@ModelAttribute("user") UserDTO user){
 
         userService.save(user);
-        model.addAttribute("users",userService.findAll() );
 
-
-
-        return "user/create";
+        return "redirect:/user/create";
     }
 
 }
