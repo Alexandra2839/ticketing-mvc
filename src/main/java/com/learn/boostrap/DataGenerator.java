@@ -3,6 +3,7 @@ package com.learn.boostrap;
 import com.learn.dto.RoleDTO;
 import com.learn.dto.UserDTO;
 import com.learn.enums.Gender;
+import com.learn.service.UserService;
 import com.learn.service.impl.RoleServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Component;
 public class DataGenerator implements CommandLineRunner {
 
     private final RoleServiceImpl roleService;
+    private final UserService userService;
 
-    public DataGenerator(RoleServiceImpl roleService) {
+    public DataGenerator(RoleServiceImpl roleService, UserService userService) {
         this.roleService = roleService;
+        this.userService = userService;
     }
 
     @Override
@@ -44,7 +47,14 @@ public class DataGenerator implements CommandLineRunner {
         UserDTO user8 = new UserDTO("Bill",
                 "Matt", "bill@cydeo.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
 
-
+        userService.save(user1);
+        userService.save(user2);
+        userService.save(user3);
+        userService.save(user4);
+        userService.save(user5);
+        userService.save(user6);
+        userService.save(user7);
+        userService.save(user8);
 
     }
 }
