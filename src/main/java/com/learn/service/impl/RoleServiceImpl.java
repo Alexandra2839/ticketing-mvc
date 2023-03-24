@@ -2,9 +2,12 @@ package com.learn.service.impl;
 
 import com.learn.dto.RoleDTO;
 import com.learn.service.RoleService;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoleServiceImpl extends AbstractMapService<RoleDTO, Long> implements RoleService {
 
 
