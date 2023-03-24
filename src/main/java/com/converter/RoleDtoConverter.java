@@ -1,0 +1,21 @@
+package com.converter;
+
+import com.learn.dto.RoleDTO;
+import com.learn.service.impl.RoleServiceImpl;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+
+@Component
+public class RoleDtoConverter implements Converter<String, RoleDTO> {
+
+    private final RoleServiceImpl roleService;
+
+    public RoleDtoConverter(RoleServiceImpl roleService) {
+        this.roleService = roleService;
+    }
+
+    @Override
+    public RoleDTO convert(String source) {
+        return roleService.findById(Long.parseLong(source));
+    }
+}
