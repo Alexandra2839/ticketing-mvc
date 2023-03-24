@@ -2,9 +2,11 @@ package com.learn.service.impl;
 
 import com.learn.dto.UserDTO;
 import com.learn.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl extends AbstractMapService<UserDTO, String> implements UserService {
     @Override
     public UserDTO save(UserDTO user) {
