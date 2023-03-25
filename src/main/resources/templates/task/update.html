@@ -61,7 +61,7 @@
                                                     <select name="assignedemployee" class="custom-select"
                                                             th:field="*{assignedEmployee}">
                                                         <option th:each="employee : ${employees}"
-                                                                th:value="${employee.userName}"
+                                                                th:value="${employee.username}"
                                                                 th:text="${employee.firstName + ' ' + employee.lastName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback" th:if="${#fields.hasErrors('assignedEmployee')}">
