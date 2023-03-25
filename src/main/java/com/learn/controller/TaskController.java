@@ -1,13 +1,13 @@
 package com.learn.controller;
 
 import com.learn.dto.TaskDTO;
+import com.learn.dto.UserDTO;
 import com.learn.service.ProjectService;
 import com.learn.service.TaskService;
 import com.learn.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/task")
@@ -34,5 +34,52 @@ public class TaskController {
 
 
         return "/task/create";
+    }
+
+    @PostMapping("/create")
+    public String insertTask(@ModelAttribute("task") TaskDTO task){
+        taskService.save(task);
+        return "redirect:/task/create";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTask(@PathVariable Long id){
+
+        taskService.deleteById(id);
+        return "redirect:/task/create";
+    }
+
+    @GetMapping("/update/{taskId}")
+    public String editTask(Model model, @PathVariable ("taskId") Long taskId){
+
+        model.addAttribute("task", taskService.findById(taskId) );
+        model.addAttribute("projects", projectService.findAll());
+        model.addAttribute("employees", userService.findEmployees() );
+
+        model.addAttribute("tasks", taskService.findAll());
+
+
+
+        return "/task/update";
+    }
+
+//    @PostMapping("/update/{taskId}")
+//    public String updateTask(@ModelAttribute("task") TaskDTO task, @PathVariable ("taskId") Long taskId){
+//        task.setId(taskId);
+//
+//        taskService.update(task);
+//
+//
+//        return "redirect:/task/create";
+//    }
+
+    @PostMapping("/update/{id}")
+    public String updateTask(@ModelAttribute("task") TaskDTO task){
+
+
+        taskService.update(task);
+
+
+        return "redirect:/task/create";
     }
 }
