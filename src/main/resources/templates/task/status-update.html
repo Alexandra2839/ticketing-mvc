@@ -55,7 +55,7 @@
                                                     <label>Assigned Employee</label>
                                                     <select th:field="*{assignedEmployee}" name="assignedemployee"
                                                             class="custom-select">
-                                                        <option th:value="${task.assignedEmployee.userName}"
+                                                        <option th:value="${task.assignedEmployee.username}"
                                                                 th:text="${task.assignedEmployee.firstName +' '+ task.assignedEmployee.lastName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback" th:if="${#fields.hasErrors('assignedEmployee')}">
