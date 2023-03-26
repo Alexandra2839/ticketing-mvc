@@ -2,6 +2,7 @@ package com.learn.controller;
 
 import com.learn.dto.TaskDTO;
 import com.learn.dto.UserDTO;
+import com.learn.enums.Status;
 import com.learn.service.ProjectService;
 import com.learn.service.TaskService;
 import com.learn.service.UserService;
@@ -81,5 +82,47 @@ public class TaskController {
 
 
         return "redirect:/task/create";
+    }
+
+    @GetMapping("/employee/pending-tasks")
+    public String employeePendingTasks(Model model){
+
+        model.addAttribute("tasks", taskService.findAllTasksByStatusISNot(Status.COMPLETED));
+
+        return "/task/pending-tasks";
+    }
+
+    @GetMapping("/employee/archive")
+    public String employeeArchivedTasks(Model model){
+
+        model.addAttribute("tasks", taskService.findAllTasksByStatus(Status.COMPLETED));
+
+        return "/task/archive";
+    }
+
+    @GetMapping("/employee/edit/{id}")
+    public String employeeEditTask(@PathVariable Long id, Model model) {
+
+        model.addAttribute("task", taskService.findById(id));
+//        model.addAttribute("projects", projectService.findAll());
+//        model.addAttribute("employees", userService.findEmployees());
+
+
+
+        model.addAttribute("statuses", Status.values());
+        model.addAttribute("tasks", taskService.findAllTasksByStatusISNot(Status.COMPLETED));
+
+
+
+        return "/task/status-update";
+
+    }
+
+    @PostMapping("/employee/update/{id}")
+    public String employeeUpdateTask(TaskDTO task){
+
+        taskService.updateStatus(task);
+
+        return "redirect:/task/employee/pending-tasks";
     }
 }
